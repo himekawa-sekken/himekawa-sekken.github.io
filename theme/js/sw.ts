@@ -5,7 +5,6 @@ declare var window: Window
 
 export const sw = (): void => {
     if(typeof window.jm_pathToWorker === 'string') {
-        let state = 'active'
         // twbs/bootstrap build/sw.jsより借用
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(window.jm_pathToWorker)

@@ -9,6 +9,10 @@ import { pjaxinit } from './pjax';
 import { detectOldBrowser } from './old-browsers';
 import { pjaxLoaded } from './pjax-ready-others';
 
+import { BgYouTube } from './bg-youtube';
+import { NavbarHiding } from './navbar';
+
+
 function contentLoaded(){
     fainit()
     scrolltoshow()
@@ -22,6 +26,11 @@ sw()
 document.addEventListener('pjax:content', sw)
 
 new Sidebar()
+
+new BgYouTube('Q2eOixIOIT8', 'ytwrapper')
+
+new NavbarHiding()
+
 pjaxinit()
 
 detectOldBrowser()

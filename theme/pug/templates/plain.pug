@@ -87,12 +87,16 @@ html(lang=site.language)
 
       block js_head
 
-  body(class=(site.sidebar ? 'with-sidebar' : ''))
-    #grid(class=(site.sidebar ? 'with-sidebar' : ''))
+  body
+    block nav
+      #nav.sidebar-target
+        include ../includes/_nav.pug
+
+    #grid.sidebar-target
       block wo_footer
-        block nav
-          #nav
-            include ../includes/_nav.pug
+        block pre_contents_wrapper
+          #pre_content(data-istransparent=page.attributes.precontentIsTransparent)
+            block pre_content
 
         block sidebar
           nav#sidebar
@@ -103,7 +107,7 @@ html(lang=site.language)
             != main_html
 
       block footer
-        #footer.bg-white
+        #footer
           #footer_wrap.py-3
             if(site.disqus)
               .container.py-3
@@ -114,6 +118,8 @@ html(lang=site.language)
             .container
               .d-flex.justify-content-center.flex-wrap.small
                 div © 2018 #{site.author}
+    block ytwrapper
+      #ytwrapper.sidebar-target
 
     block includes_foot
       include ../includes/_includes_foot.pug

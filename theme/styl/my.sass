@@ -1,3 +1,6 @@
+html
+  overflow-x: hidden
+  
 html,
 body
   word-break: normal
@@ -43,6 +46,19 @@ ul.simpleindex
   > li
     @extend .mb-1
     @extend .font-weight-bold
+
+    a
+      .maqz-lop-left
+        width: 1em
+
+      .maqz-lop-right
+        transition: transform .4s ease
+        padding-left: .8em
+
+      &:hover
+        .maqz-lop-right
+          transform: translateX(.8em)
+
 
 .lh-12
   line-height: 1.2em
@@ -129,3 +145,15 @@ code:not(.mfm-inline-code)
 
 #p7frame
   display: none
+
+.text-shadow-none
+  text-shadow: none !important
+
+.bg-w80
+  background-color: rgba(255, 255, 255, .8) !important
+
+.bg-p80
+  background-color: rgba(6, 0, 52, 0.8) !important
+
+.h-1em
+  height: 1em

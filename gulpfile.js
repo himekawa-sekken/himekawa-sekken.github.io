@@ -374,14 +374,14 @@ function svgo(option){
     const SVGOp = require('svgo')
     const osvg = new SVGOp(option)
     return through2.obj(
-        async (file, encode, cb) => {
+        (file, encode, cb) => {
             if(!file) {
-                this.push(file)
                 return cb(null, file)
             } else if (file.isBuffer()) {
-                const svg = await osvg.optimize(file.contents.toString())
-                file.contents = Buffer.from(svg.data)
-                return cb(null, file)
+                osvg.optimize(file.contents.toString()).then((svg) => {
+                    file.contents = Buffer.from(svg.data)
+                    cb(null, file)
+                })
             } else if (file.isStream()) {
                 return cb(this.emit('error', new Error('maqz:svgo', 'Streaming not supported')))
             }
@@ -396,31 +396,27 @@ if (!Array.isArray) {
 function inkscape(option){
     const spawn = require('child_process').spawn
     const temp = require('temp')
+    temp.track()
     let nargs = []
     if(option.args) {
         if(typeof option.args === 'string') nargs = nargs.concat(option.args.split(' '))
         else if (Array.isArray(option.args)) nargs = nargs.concat(option.args)
         else throw Error('maqz:inkscape : argsは文字列か配列にしましょう。')
     }
-    console.log(nargs)
-    return through2.obj(
+    const stream = through2.obj(
         (file, encode, cb) => {
             if(!file) {
-                this.push(file)
                 return cb(null, file)
             } else if (file.isBuffer()) {
-                temp.track();
                 temp.open({suffix: '.svg'}, (err, info) => {
                     if(err) cb(new Error('maqz:inkscape(temp-open)', err))
-                    console.log(info.path)
                     fs.write(info.fd, file.contents, () => { return });
                     fs.close(info.fd, (err) => {
                         if(err) cb(new Error('maqz:inkscape(temp-write)', err))
-                        nargs = nargs.concat(['-z', '-f', info.path,`--export-${option.exportType || 'plain-svg'}=-`])
-                        const dois = spawn('inkscape', nargs)
+                        const dois = spawn('inkscape', nargs.concat(['-z', '-f', info.path,`--export-${option.exportType || 'plain-svg'}=-`]))
                         let res = []
                         dois.stdout.on('data', (chunk) => {
-                            res = res.concat(chunk)
+                            res.push(chunk)
                         })
                         dois.stderr.on('data', (data) => {
                             new Error('maqz:inkscape', stderr.toString())
@@ -434,10 +430,27 @@ function inkscape(option){
                     })
                 })
             } else if (file.isStream()) {
-                return cb(this.emit('error', new Error('maqz:inkscape', 'Streaming not supported')))
+                temp.track();
+                temp.open({suffix: '.svg'}, (err, info) => {
+                    if(err) cb(new Error('maqz:inkscape(temp-open)', err))
+                    fs.write(info.fd, file.contents, () => { return });
+                    fs.close(info.fd, (err) => {
+                        if(err) cb(new Error('maqz:inkscape(temp-write)', err))
+                        const dois = spawn('inkscape', nargs.concat(['-z', '-f', info.path,`--export-${option.exportType || 'plain-svg'}=-`]))
+                        dois.stderr.on('data', (data) => {
+                            new Error('maqz:inkscape', stderr.toString())
+                        })
+                        dois.on('close', () => {
+                            file.contents.pipe(dois.stdout)
+                            cb(null, file)
+                        })
+                        dois.stdin.pipe(file.contents)
+                    })
+                })
             }
         }
     )
+    return stream
 }
 
 const images_allFalse = {

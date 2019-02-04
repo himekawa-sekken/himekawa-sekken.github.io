@@ -1,71 +1,104 @@
 body
-  &.with-sidebar
-    @media (max-width: map-get($grid-breakpoints, md) - 0.02)
-      position: absolute
-      overflow-x: hidden
-      overflow-y: auto
-      width: 100%
-      height: 100%
+  position: relative
+  @media (max-width: map-get($grid-breakpoints, md) - 0.02)
+    width: 100%
+    height: 100%
+
+#ytwrapper,
+#grid,
+#nav
+  position: absolute
+  left: 0
+  top: 0
+  max-width: 100vw
+  width: 100%
+
+  @media (max-width: map-get($grid-breakpoints, md) - 0.02)
+    max-width: 170vw
+    width: 170vw
+    left: -70vw
+    transition: left .4s ease
+
+$contents-background-color: rgba(249, 249, 255, .675)
+$contents-text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff
 
 #grid
-  &.with-sidebar
-    display: grid
-    max-width: 100vw
-    width: 100%
-    grid-template-columns: 1fr 4fr
+  position: relative
+  display: grid
+  grid-template-columns: 350px 1fr
+  z-index: 0
 
-    @media (min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, lg) - 0.02)
-      grid-template-columns: 3fr 7fr
+  @media (min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, xl) - 0.02)
+    grid-template-columns: 300px 1fr
+
+  @media (max-width: map-get($grid-breakpoints, md) - 0.02)
+    grid-template-columns: 70vw 100vw
+
+  #sidebar
+    padding: 0
+    grid-column: 1 / 2
+    grid-row: 2 / 3
+    background-color: $contents-background-color
+    text-shadow: $contents-text-shadow
 
     @media (max-width: map-get($grid-breakpoints, md) - 0.02)
-      position: relative
-      max-width: 170vw
-      width: 170vw
-      grid-template-columns: 70vw 100vw
-      left: -70vw
-      top: 0
-      transition: left .4s ease
+      grid-row: 1 / 5
 
-    #sidebar
-      padding: 0
-      grid-column: 1 / 2
-      grid-row: 2 / 3
+  #pre_content
+    min-height: 81px
+    grid-column: 1 / 3
+    grid-row: 1 / 2
 
-      @media (max-width: map-get($grid-breakpoints, md) - 0.02)
-        grid-row: 1 / 4
+    &:not([data-istransparent]),
+    &:not([data-istransparent])[data-istransparent="false"]
+      background-color: $contents-background-color
 
-    #nav
-      grid-column: 1 / 3
-      grid-row: 1 / 2
-
-      @media (max-width: map-get($grid-breakpoints, md) - 0.02)
-        grid-column: 2 / 3
-
-    #main
-      min-height: calc(100vh - 132px)
+    @media (max-width: map-get($grid-breakpoints, md) - 0.02)
       grid-column: 2 / 3
-      grid-row: 2 / 3
 
-    #footer
-      border-top: 1px solid #dee2e6
-      grid-column: 1 / 3
-      grid-row: 3 / 4
+  #main
+    min-height: calc(100vh - 39px)
+    grid-column: 2 / 3
+    grid-row: 2 / 3
+    background-color: $contents-background-color
+    text-shadow: $contents-text-shadow
 
-      @media (max-width: map-get($grid-breakpoints, md) - 0.02)
-        grid-column: 2 / 3
+  #footer
+    grid-column: 1 / 3
+    grid-row: 3 / 4
+    background-color: $contents-background-color
+    text-shadow: $contents-text-shadow
 
-    #backdrop
+    @media (max-width: map-get($grid-breakpoints, md) - 0.02)
       grid-column: 2 / 3
-      grid-row: 1 / 4
-      transition: opacity .4s ease
-      background-color: #000
-      visibility: hidden
-      pointer-events: none
-      opacity: 0
-      z-index: 9999
 
-  &:not(.with-sidebar)
-    display: grid
+  #backdrop
+    grid-column: 2 / 3
+    grid-row: 1 / 4
+    transition: opacity .4s ease, visibility .4s ease
+    background-color: #000
+    visibility: hidden
+    pointer-events: none
+    opacity: 0
+    z-index: 9999
 
-    #footer
-      border-top: 1px solid $gray-300
+#ytwrapper
+  position: fixed
+  background: #fff
+  z-index: -1
+  overflow: hidden
+  height: 100vh
+
+  > *
+    position: absolute
+    box-sizing: border-box
+    height: 56.25vw
+    left: 50%
+    min-height: 100%
+    min-width: 100%
+    top: 50%
+    transform: translate(-50%, -50%)
+    width: 177.77777778vh
+
+    @media (max-width: map-get($grid-breakpoints, md) - 0.02)
+      height: calc(56.25 * 170vw)

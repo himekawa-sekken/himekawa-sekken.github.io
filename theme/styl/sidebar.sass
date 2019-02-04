@@ -1,11 +1,14 @@
 #sidebar
-  border-right: 1px solid $gray-300
 
   > .sidebar-inner
     position: sticky
-    padding: 1em
-    top: 0
+    padding: 1.3em
+    top: 81px
     left: 0
+    font-size: 1.15rem
+
+    @media (max-width: map-get($grid-breakpoints, md) - 0.02)
+      top: 0
 
     .sidebarstyle-h1
       font-weight: 700

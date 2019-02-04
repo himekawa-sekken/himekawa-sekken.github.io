@@ -1,8 +1,8 @@
 extends ./plain.pug
 block main
   #main.padding
-    .container-fluid.py-3.bg-white
-      article#article_maincontent.bg-white
+    .p-3.my-3.mr-3.py-5.raise-1.bg-w80
+      article#article_maincontent
         block article_header
           header.w-100
             h1.mt-3= page.attributes.title
@@ -20,14 +20,15 @@ block main
 
         block article_footer
           footer.w-100
-            .d-flex.flex-wrap.my-2.bg-light
-              if(page.attributes.next)
-                - const pageNext = pages.find(qpage => qpage.meta.permalink == `${page.attributes.next}`)
-                  if(pageNext)
-                    a(href=`${site.url.path}${page.attributes.next}`)#next.p-3.flex-fill
-                      .container 次: #{pageNext.attributes.title}
-              if(page.attributes.prev)
-                - const pagePrev = pages.find(qpage => qpage.meta.permalink == `${page.attributes.prev}`)
-                  if(pagePrev)
-                    a(href=`${site.url.path}${page.attributes.prev}`)#prev.p-3.flex-fill
-                      .container 前: #{pagePrev.attributes.title}
+            if(page.attributes.next || page.attributes.prev)
+              .d-flex.flex-wrap.my-2.bg-light
+                if(page.attributes.next)
+                  - const pageNext = pages.find(qpage => qpage.meta.permalink == `${page.attributes.next}`)
+                    if(pageNext)
+                      a(href=`${site.url.path}${page.attributes.next}`)#next.p-3.flex-fill
+                        .container 次: #{pageNext.attributes.title}
+                if(page.attributes.prev)
+                  - const pagePrev = pages.find(qpage => qpage.meta.permalink == `${page.attributes.prev}`)
+                    if(pagePrev)
+                      a(href=`${site.url.path}${page.attributes.prev}`)#prev.p-3.flex-fill
+                        .container 前: #{pagePrev.attributes.title}

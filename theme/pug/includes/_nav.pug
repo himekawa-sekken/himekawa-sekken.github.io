@@ -9,12 +9,13 @@ nav#mainnav.navbar.navbar-light.flex-row.p-0
     else
       button.hamburger(on='tap:sidebar.toggle' aria-label="メニューを開く")
         +fa("bars", "fas")
-  a(href=`${site.url.path}/`).navbar-brand.mx-5=site.short_name
+  a(href=`${site.url.path}/`).navbar-brand.mx-auto
+    img(src="/files/images/header-banner.svg" height="30" alt="姫川❄雪研")
 
 //-
   パンくずリスト
 
-nav(aria-label="breadcrumb")#breadcrumb.bg-transparent
+nav(aria-label="breadcrumb")#breadcrumb
   .container-fulid.px-1.px-lg-5
     ol.breadcrumb.bg-transparent.text-primary.my-0.mx-md-5.mx-1.py-1.px-0
       - const topPage = pages.find(e => e.meta.permalink === '/')

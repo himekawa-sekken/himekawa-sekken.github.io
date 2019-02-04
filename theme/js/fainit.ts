@@ -1,7 +1,7 @@
-import { getNode } from '../../scripts/falib'
 import { IconPrefix, IconName, IconParams } from '@fortawesome/fontawesome-svg-core';
 
-export const fainit = (): void => {
+export const fainit = async (): Promise<void> => {
+    const { getNode } = await import('../../scripts/falib')
     for( let el of Array.from(document.getElementsByTagName('i')) ){
         if(!el.hasChildNodes()){
             try {

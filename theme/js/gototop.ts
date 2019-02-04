@@ -7,8 +7,8 @@ function gototo(){
     })
     return false
 }
-export const gototop = (): void => {
-    for(let el of Array.from(document.getElementsByClassName('trigger-gototop'))){
+export const gototop = async (): Promise<void> => {
+    for(const el of Array.from(document.getElementsByClassName('trigger-gototop'))){
         el.addEventListener('click', gototo)
     }
 }

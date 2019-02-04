@@ -19,9 +19,14 @@ module.exports = async (site, src, urlPrefix) => {
             doit(srcs[p], p, srcs, path.parse(site.pages_src.path))
         )
     }
-    let result = await Promise.all(promises)
-    result = result.filter( (el, i, arr) => !!el )
-    return result
+    let pages = await Promise.all(promises)
+    pages = pages.filter( (el, i, arr) => !!el )
+
+    pages.sort(function(a,b) {
+        if(( a.meta.mtime || a.meta.birthtime ) < ( b.meta.mtime || b.meta.birthtime )) { return 1 } else { return -1 }
+    })
+  
+    return pages
 
     async function doit(val, i, arr, srcpath){
         let page = {}
