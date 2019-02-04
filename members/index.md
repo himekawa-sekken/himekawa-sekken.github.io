@@ -1,4 +1,5 @@
 ---
 title: メンバー
-layout: member-index
+layout: default
 ---
+（作成中です…）
