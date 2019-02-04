@@ -1,24 +1,22 @@
-.sidebarstyle-h1 目次
+section
+  h2 Contents
+  ul.list-unstyled.sidebarstyle-list
+    li
+      a.d-block(href="/" class=(page.meta.permalink == "/" ? 'font-weight-bold' : '')) Front Page
+    li
+      a.d-block(href="/activities/" class=(page.meta.permalink.startsWith("/activities/") ? 'font-weight-bold' : '')) Activities
+    li
+      a.d-block(href="/members/" class=(page.meta.permalink.startsWith("/members/") ? 'font-weight-bold' : '')) Members
 
-ul.list-unstyled.sidebarstyle-list
-  +lis_of_dir('/', {self: true, s: false, unstyled: true, description: false})
 
-.sidebarstyle-h1 外部リンク
-
-ul.list-unstyled.sidebarstyle-list
-  li
-    a.d-block(href="https://github.com/tamaina" target="_blank" rel="noreferrer")
-      +fa_fw('github', 'fab')
-      |  tamaina
-  li
-    a.d-block(href="https://twitter.com/t_ma1n" target="_blank" rel="noreferrer")
-      +fa_fw('twitter', 'fab')
-      |  t_ma1n
-  li
-    a.d-block(href="https://twitter.com/aqzvy" target="_blank" rel="noreferrer")
-      +fa_fw('twitter', 'fab')
-      |  aqzvy
-
-#updateTime.small
-  | サイトの更新 
-  span.text-muted #{updateMoment.format('lll')}
+section
+  h2 Accounts
+  ul.list-unstyled.sidebarstyle-list
+    li
+      a.d-block(href="https://twitter.com/himekawa_snow" target="_blank" rel="noreferrer")
+        +fa_fw('twitter', 'fab')
+        |  himekawa_snow
+    li
+      a.d-block(href="https://www.youtube.com/channel/UCZvzqf0lL-Oe1fkJM0hKtmQ?sub_confirmation=1" target="_blank" rel="noreferrer")
+        +fa_fw('youtube', 'fab')
+        |  姫川雪質研究会Ch

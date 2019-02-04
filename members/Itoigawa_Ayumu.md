@@ -1,0 +1,22 @@
+---
+title: 糸魚川 歩
+layout: member
+person:
+  name:
+    full:
+      - kanji: 糸魚川
+        yomi: いといがわ
+      - kanji: 歩
+        yomi: あゆむ
+    nickname: null
+  acounts: null
+membershipNumber: 1
+post: 会長
+image: false
+---
+当会の代表をしています(^^)
+
+- 普段は青森をはじめとした東北地方について鉄道を足がかりに考察
+- 車窓越しに地形について観察したりもしています
+
+☆平岩〜小滝駅間サイコー!!☆
