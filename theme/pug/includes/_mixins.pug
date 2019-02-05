@@ -116,12 +116,18 @@ mixin embed_youtube_autoplay(vid)
 
 //- https://developers.google.com/youtube/player_parameters?hl=ja
 
-mixin blog_badges(targetpage)
+mixin blog_badges(targetpage, link)
   .mr-2
     +fa_fw("folder-open")
     if(targetpage.attributes.categories)
       each category in targetpage.attributes.categories
-        span.badge.badge-success.md-small= category
+        - const catpage = pages.find(e => e.meta.permalink == `/activities/categories/${category}/`)
+        if(catpage && link)
+          a.badge.badge-success.md-small(href= catpage.meta.permalink)= catpage.attributes.title
+        else if(catpage && !link)
+          span.badge.badge-success.md-small= catpage.attributes.title
+        else
+          span.badge.badge-success.md-small= category
         |  
     else
       | なし

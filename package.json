@@ -1,8 +1,8 @@
 {
-  "name": "maqz_test",
+  "name": "himekawa-snow",
   "version": "1.0.0",
   "main": "docs/index.html",
-  "description": "aqz/tamaina's Web site",
+  "description": "the Himekawa Snow Society's website",
   "scripts": {
     "build-files": "gulp prebuild-files",
     "build2deploy": "gulp",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tamaina/maqz"
+    "url": "git+https://github.com/himekawa-sekken/himekawa-sekken.github.io"
   },
   "author": "tamaina <tamaina@hotmail.co.jp> (https://misskey.xyz/@aqz)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tamaina/maqz/issues"
+    "url": "https://github.com/himekawa-sekken/himekawa-sekken.github.io/issues"
   },
-  "homepage": "https://tamaina.github.io/maqz/",
+  "homepage": "https://himekawa-sekken.github.io",
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-brands-svg-icons": "^5.7.0",

@@ -18,7 +18,7 @@ module.exports = (htm, urlprefix) => {
   $('img:not(.notblogstyle)').each((i, el) => {
     const img = $.html($(el).eq(i))
     const tit = $(el).attr('title')
-    const str = `<div class="blogstyle blogstyle-image"><div>${img}<p>${tit}</p></div></div>`
+  const str = `<div class="blogstyle blogstyle-image"><div>${img}${tit ? `<p>${tit}</p>` : ''}</div></div>`
     $(el).after(str)
     $(el).remove()
   })

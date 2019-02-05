@@ -88,34 +88,8 @@ html(lang=site.language)
       block js_head
 
       block loadingCss
-        style
-          :clean-css
-            #loading {
-              position: fixed;
-              left: 0;
-              top: 0;
-              max-width: 100vw;
-              width: 100%;
-              transition: all .4s ease;
-              z-index: 19999;
-              background-color: rgb(6, 0, 52);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              color: rgb(249, 249, 255);
-              font-size: 4rem;
-            }
-
-            #loading.open {
-              opacity: 0;
-              visibility: hidden;
-              pointer-events: none;
-            }
-
-            #loading svg {
-              height: 1em;
-            }
+        style.
+          #loading {position: fixed;left: 0;top: 0;max-width: 100vw;width: 100%;transition: all .4s ease;z-index: 19999;background-color: rgb(6, 0, 52);display: flex;justify-content: center;align-items: center;height: 100vh;color: rgb(249, 249, 255);font-size: 4rem;}#loading.open {opacity: 0;visibility: hidden;pointer-events: none;}#loading svg {height: 1em;}
 
   body
     block loading
@@ -124,7 +98,7 @@ html(lang=site.language)
           +hssLogo('fa-spin')
 
     block nav
-      #nav.sidebar-target.raise-1
+      #nav.sidebar-target
         include ../includes/_nav.pug
 
     #grid.sidebar-target
