@@ -18,7 +18,11 @@ export class loading {
         window.hssLoading = this
         this.loadingId = loadingId
         this.deleteTimeout = deleteTimeout
+
         setTimeout(this.open.bind(this), openTimeout)
+
+        const gpid = this.append()
+        window.addEventListener('load', this.complete.bind(this, gpid))
     }
 
     public append() {
