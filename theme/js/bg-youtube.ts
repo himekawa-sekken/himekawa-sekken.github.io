@@ -6,10 +6,12 @@ export class BgYouTube {
     private eid: string
     private wrapper: HTMLElement
     public player: any
+    public pid: string
 
     constructor(videoId: string, wrapperId: string = 'ytwrapper') {
         this.vid = videoId
         this.eid = wrapperId
+        if (window.hssLoading) this.pid = window.hssLoading.append()
         onReady(this.registerOnReady.bind(this))
     }
 
@@ -39,7 +41,8 @@ export class BgYouTube {
         this.player.setVolume(0)
         this.player.playVideo()
         this.player.on('stateChange', (e) => {
-            if(e.data == 1) this.wrapper.style.opacity = '1'
+            if (window.hssLoading) window.hssLoading.complete(this.pid)
+            if (e.data == 1) this.wrapper.style.opacity = '1'
         })
     }
 }

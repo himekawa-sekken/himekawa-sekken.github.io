@@ -21,12 +21,11 @@ export class NavbarHiding {
         if(IntersectionObserver !== undefined){
             this.observer = new IntersectionObserver((entries, observer) => {
                 for (const entry of entries) {
-                    console.log(entry)
-                    if (entry.intersectionRatio > 0.3 && !this.showing) this.show()
-                    else if (entry.intersectionRatio < 0.3 && this.showing) this.hide()
+                    if (entry.intersectionRatio > 0.4 && !this.showing) this.show()
+                    else if (entry.intersectionRatio < 0.4 && this.showing) this.hide()
                 }
             }, {
-                threshold: [0.2, 0.25, 0.3, 0.35, 0.4]
+                threshold: [0.3, 0.35, 0.4, 0.45, 0.5]
             })
         } else {
             console.error('NavbarHiding: IntersectionObserverが使えません。')

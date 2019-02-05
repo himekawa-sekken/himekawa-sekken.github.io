@@ -1,13 +1,13 @@
-interface Window {
-    gtag(a: string, b: string): void
-    DISQUS: {
-        reset(a: any): void
+declare global {
+    interface Window {
+        gtag(a: string, b: string): void
+        DISQUS: {
+            reset(a: any): void
+        }
+        disqus_config: any
+        twttr: any
     }
-    disqus_config: any
-    twttr: any
 }
-declare var window: Window
-
 
 export const pjaxLoaded = (): void => {
     if (window.gtag) {

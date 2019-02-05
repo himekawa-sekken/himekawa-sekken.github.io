@@ -90,7 +90,7 @@ append article_body
   #blog_index.d-flex.flex-row.row.m-0
     each thispage in qpages
       a(href=`${site.url.path}${thispage.meta.permalink}`).blog-index-item
-        article.card.text-shadow-none.flex-lg-row
+        article.card.flex-lg-row
           if( thispage.meta.thumbnail )
             img.card-left(alt="サムネイル", src=`${site.url.path}${thispage.meta.thumbnail.dir}/${thispage.meta.thumbnail.name}.720${thispage.meta.thumbnail.ext}`)
           else
