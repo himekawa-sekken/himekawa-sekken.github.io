@@ -1,0 +1,52 @@
+block contents
+  section
+    h2 Contents
+    ul.list-unstyled.sidebarstyle-list
+      li
+        a.d-block(href="/" class=(page.meta.permalink == "/" ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Front Page
+      li
+        a.d-block(href="/activities/" class=(page.meta.permalink.startsWith("/activities/") ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Activities
+      li
+        a.d-block(href="/members/" class=(page.meta.permalink.startsWith("/members/") ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Members
+
+block members
+
+  -
+    let queries = [], qpages = []
+    const indexPrefix = 'member'
+    let rootpath = `/members/`
+    qpages = pages.filter(e => e.meta.permalink.indexOf(rootpath) == 0
+                            && e.attributes.layout == indexPrefix
+                            && e.attributes.draft != true
+                            && e.attributes.published == true
+                          )
+    qpages = qpages.sort((a, b) => a.attributes.membershipNumber - b.attributes.membershipNumber)
+
+  section
+    h2 Members
+    ul.list-unstyled.sidebarstyle-list
+      each mpage in qpages
+        li
+          a.d-block(href=mpage.meta.permalink class=(mpage.meta.permalink == page.meta.permalink ? 'font-weight-bold' : ''))
+            if(mpage.attributes.membershipNumber)
+              small No. #{mpage.attributes.membershipNumber} 
+            | #{mpage.attributes.title}
+
+block accounts
+  section
+    h2 Accounts
+    ul.list-unstyled.sidebarstyle-list
+      li
+        a.d-block(href="https://twitter.com/himekawa_snow" target="_blank" rel="noreferrer")
+          +fa_fw('twitter', 'fab')
+          |  himekawa_snow
+      li
+        a.d-block(href="https://www.youtube.com/channel/UCZvzqf0lL-Oe1fkJM0hKtmQ?sub_confirmation=1" target="_blank" rel="noreferrer")
+          +fa_fw('youtube', 'fab')
+          |  姫川雪質研究会Ch

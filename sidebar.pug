@@ -1,28 +1,29 @@
-section
-  h2 Contents
-  ul.list-unstyled.sidebarstyle-list
-    li
-      a.d-block(href="/" class=(page.meta.permalink == "/" ? 'font-weight-bold' : ''))
-        +hssLogo('fa-fw')
-        | Front Page
-    li
-      a.d-block(href="/activities/" class=(page.meta.permalink.startsWith("/activities/") ? 'font-weight-bold' : ''))
-        +hssLogo('fa-fw')
-        | Activities
-    li
-      a.d-block(href="/members/" class=(page.meta.permalink.startsWith("/members/") ? 'font-weight-bold' : ''))
-        +hssLogo('fa-fw')
-        | Members
+block contents
+  section
+    h2 Contents
+    ul.list-unstyled.sidebarstyle-list
+      li
+        a.d-block(href="/" class=(page.meta.permalink == "/" ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Front Page
+      li
+        a.d-block(href="/activities/" class=(page.meta.permalink.startsWith("/activities/") ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Activities
+      li
+        a.d-block(href="/members/" class=(page.meta.permalink.startsWith("/members/") ? 'font-weight-bold' : ''))
+          +hssLogo('fa-fw')
+          | Members
 
-
-section
-  h2 Accounts
-  ul.list-unstyled.sidebarstyle-list
-    li
-      a.d-block(href="https://twitter.com/himekawa_snow" target="_blank" rel="noreferrer")
-        +fa_fw('twitter', 'fab')
-        |  himekawa_snow
-    li
-      a.d-block(href="https://www.youtube.com/channel/UCZvzqf0lL-Oe1fkJM0hKtmQ?sub_confirmation=1" target="_blank" rel="noreferrer")
-        +fa_fw('youtube', 'fab')
-        |  姫川雪質研究会Ch
+block accounts
+  section
+    h2 Accounts
+    ul.list-unstyled.sidebarstyle-list
+      li
+        a.d-block(href="https://twitter.com/himekawa_snow" target="_blank" rel="noreferrer")
+          +fa_fw('twitter', 'fab')
+          |  himekawa_snow
+      li
+        a.d-block(href="https://www.youtube.com/channel/UCZvzqf0lL-Oe1fkJM0hKtmQ?sub_confirmation=1" target="_blank" rel="noreferrer")
+          +fa_fw('youtube', 'fab')
+          |  姫川雪質研究会Ch
