@@ -11,6 +11,9 @@
       .hss-memberIndex-member-inner
         @extend .bg-w80
         @extend .text-shadow-none
+        @extend .raise-1
+        @extend .p-2
+        @extend .text-decoration-none
         display: flex
         flex-direction: column
         align-items: center
@@ -18,7 +21,15 @@
         height: 430px
 
         > img
+          @extend .raise-1
           width: 200px
           height: 200px
           object-fit: cover
           border-radius: 100%
+#member
+  #member_tachie
+    height: auto
+    object-fit: contain
+    object-position: top
+    width: 20em
+    max-width: 100%

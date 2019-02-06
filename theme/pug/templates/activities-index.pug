@@ -70,7 +70,8 @@ append preset
     } else {
       headline = indexHeadline + " "
       for( r = 0; r < queries.length; r++ ){
-        headline += `${types[queries[r].type]}:${queries[r].query}･`
+        const qn = pages.find(e => e.meta.permalink == `${rootpath}${queries[r].type}/${queries[r].query}`)
+        headline += `${types[queries[r].type]}:${qn ? qn.attributes.title : queries[r].query}･`
       }
       headline = headline.slice(0,-1)
     }

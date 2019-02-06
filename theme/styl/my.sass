@@ -49,11 +49,11 @@ ul.simpleindex
 
     a
       .maqz-lop-left
-        width: 1em
+        width: 1.3em
 
       .maqz-lop-right
         transition: transform .4s ease
-        padding-left: .8em
+        padding-right: .8em
 
       &:hover
         .maqz-lop-right
@@ -151,9 +151,15 @@ code:not(.mfm-inline-code)
 
 .bg-w80
   background-color: rgba(255, 255, 255, .8) !important
+a.bg-w80
+  &:hover, &focus
+    background-color: rgba(230, 230, 230, .8)
 
 .bg-p80
   background-color: rgba(6, 0, 52, 0.8) !important
 
 .h-1em
   height: 1em
+
+.flex-shrink-2
+  flex-shrink: 2

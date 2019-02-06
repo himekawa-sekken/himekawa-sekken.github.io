@@ -1,0 +1,75 @@
+extends ./plain.pug
+append preset
+  -
+    let queries = [], qpages = []
+    const indexPrefix = 'activity'
+    let rootpath = `/activities/`
+    qpages = pages.filter(e => e.meta.permalink.indexOf(rootpath) == 0
+                            && e.attributes.layout == indexPrefix           // blogレイアウトが適用されている
+                            && e.attributes.draft != true              // 
+                            && e.attributes.published == true
+                          )
+    qpages = qpages.filter(e => {
+      if (e.attributes.author) {
+        const mid = e.attributes.author.memberId || e.attributes.author.authorId 
+        if (mid) return mid == page.meta.dirs[page.meta.dirs.length - 2]
+        else return false
+      } else return false
+    })
+
+block main
+  #main
+    #member
+      .m-3.px-3.py-5.raise-1.bg-w80.text-shadow-none
+        article#article_maincontent
+          block article_header
+            header.w-100
+              if(page.attributes.membershipNumber)
+              .h4 No. #{page.attributes.membershipNumber}
+              h1.mt-2
+                if(page.attributes.person && page.attributes.person.name && page.attributes.person.name.full)
+                  each namepart in page.attributes.person.name.full
+                    if(namepart.yomi)
+                      ruby
+                        | #{namepart.name}
+                        rp (
+                        rt=namepart.yomi
+                        rp )
+                    else
+                      | #{namepart.name}
+                    |  
+
+          block article_body
+            .d-flex.flex-column.flex-xl-row.align-items-center.align-items-xl-start.pt-2.pb-4
+              if(page.attributes.tachie)
+                img.mr-xl-3#member_tachie.flex-shrink-1(src=page.attributes.tachie)
+              .mw-70em.w-100.flex-shrink-2
+                section.pt-3.pt-xl-0
+                  block article_body_inner
+                    != main_html
+
+      .m-3.px-3.py-5.raise-1.bg-w80.text-shadow-none
+        h2 #{page.attributes.title}のActivity一覧
+        if(qpages && qpages.length > 0)
+          #blog_index.d-flex.flex-row.row.m-0
+            each thispage in qpages
+              a(href=`${site.url.path}${thispage.meta.permalink}`).blog-index-item
+                article.card.flex-lg-row
+                  if( thispage.meta.thumbnail )
+                    img.card-left(alt="サムネイル", src=`${site.url.path}${thispage.meta.thumbnail.dir}/${thispage.meta.thumbnail.name}.720${thispage.meta.thumbnail.ext}`)
+                  else
+                    img.card-left(alt="サムネイル", src=`${site.url.path}/files/thumbnail_noimage.svg`)
+                  .card-right
+                    h4.card-title #{thispage.attributes.title}
+                    p.card-text.px-3 #{thispage.attributes.description}
+                    - let birthtime = new Date(thispage.meta.birthtime)
+                    - let mtime = new Date(thispage.meta.mtime)
+                    footer.card-footer
+                      .mr-2
+                        +fa_fw("clock")
+                        time(thispage.meta.mtime)=moment(thispage.meta.mtime).format('lll')
+                      if(thispage.attributes.author)
+                        +blog_author(thispage, false)
+                      +blog_badges(thispage)
+        else
+          p （なし）
