@@ -205,14 +205,13 @@ gulp.task('js', (cb) => {
 
 function searchSidebar(pathe){
     let searchin
-    if(pathe.dir == "") searchin = `${pathe.dir}sidebar.pug`
+    if (pathe.dir == "") searchin = `pages/sidebar.pug`
     else searchin = `${pathe.dir}/sidebar.pug`
-    if(existFile(searchin)){
+    if(existFile(searchin) || searchin == 'pages/sidebar.pug'){
         return searchin
     } else {
-        // const uppath = path.parse(pathe.dir)
-        // searchSidebar(uppath)
-        return "pages/sidebar.pug"
+        const uppath = path.parse(pathe.dir)
+        searchSidebar(uppath)
     }
 }
 
@@ -277,7 +276,7 @@ gulp.task('pug', async () => {
         else throw Error('default.pugが見つかりませんでした。')
 
         if (site.sidebar) {
-            const sidebarpath = searchSidebar(page.meta.src)
+            const sidebarpath = searchSidebar(page.meta.src) || 'pages/sidebar.pug'
             if(!sidebarcache[sidebarpath]) sidebarcache[sidebarpath] = await readFile(sidebarpath, 'utf-8')
             let sidebar_html = pug.render(`${puglocals.theme_pug.script}\n${puglocals.theme_pug.mixin}\n${sidebarcache[sidebarpath]}`, puglocals)
             puglocals.sidebar_html = sidebar_html
