@@ -5,9 +5,9 @@ description:
 person:
   name:
     full:
-      - kanji: 姫川
+      - name: 姫川
         yomi: ひめかわ
-      - kanji: 緋芽
+      - name: 緋芽
         yomi: ひめ
     nickname: null
   acounts:
@@ -18,6 +18,7 @@ person:
 membershipNumber: 3
 posts: ['研究員']
 image: /files/images/imports/2019/02/himehime.jpg
+tachie: /files/images/imports/2019/02/himehime.jpg
 ---
 温泉を中心に糸魚川周辺をあれこれする人です。そろそろ禁断症状出て来たんで姫川温泉行きたいです。
 

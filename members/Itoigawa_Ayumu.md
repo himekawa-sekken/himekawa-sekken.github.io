@@ -5,15 +5,16 @@ description:
 person:
   name:
     full:
-      - kanji: 糸魚川
+      - name: 糸魚川
         yomi: いといがわ
-      - kanji: 歩
+      - name: 歩
         yomi: あゆむ
     nickname: null
   acounts: null
 membershipNumber: 1
 posts: ['会長']
 image: false
+tachie: false
 ---
 当会の代表をしています(^^)
 

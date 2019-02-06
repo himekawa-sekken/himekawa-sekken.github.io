@@ -5,15 +5,16 @@ description:
 person:
   name:
     full:
-      - kanji: 青海
+      - name: 青海
         yomi: おうみ
-      - kanji: 翠
+      - name: 翠
         yomi: みどり
     nickname: null
   acounts: null
 membershipNumber: 2
 posts: ['研究員']
 image: false
+tachie: false
 ---
 姫川愛は多分他の誰にも負けてない...はず...
 
