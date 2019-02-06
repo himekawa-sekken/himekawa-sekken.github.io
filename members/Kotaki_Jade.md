@@ -1,6 +1,7 @@
 ---
 title: 小滝 次瑛人
 layout: member
+description: 
 person:
   name:
     full:
@@ -11,7 +12,7 @@ person:
     nickname: null
   acounts: null
 membershipNumber: 5
-post: 研究員
+posts: ['研究員']
 image: false
 ---
 1人だけの下級生の小滝です。先輩に誘われて入ってみたんですけど、一体全体なんなんですかねこの会は……

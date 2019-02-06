@@ -1,5 +1,5 @@
 ---
-title: 動画
+title: Movie
 layout: activities-index
 query:
   category: movie

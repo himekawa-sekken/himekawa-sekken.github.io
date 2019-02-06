@@ -1,5 +1,5 @@
 ---
-title: ニュース
+title: News
 layout: activities-index
 query:
   category: news

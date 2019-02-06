@@ -24,7 +24,7 @@ precontentIsTransparent: true
         .row.justify-content-center
           #news.p-2.col-12.col-lg-6
             .raise-1.bg-w80.p-3.h-100
-              h3 ニュース
+              h3 News
               if(newses && newses.length > 0)
                 ul.simpleindex.list-unstyled
                   +lis_of_pages(newses, {icon: true, time: true, self: false, s: true, unstyled: true, description: (page.attributes.description !== undefined ? page.attributes.description : true)})
@@ -32,7 +32,7 @@ precontentIsTransparent: true
                 p.mb-0 （なし）
           #others.p-2.col-12.col-lg-6.col-xl-6
             .raise-1.bg-w80.p-3.h-100
-              h3 それ以外
+              h3 Others
               if(otherActivities && otherActivities.length > 0)
                 ul.simpleindex.list-unstyled
                   +lis_of_pages(otherActivities, {icon: true, time: true, self: false, s: true, unstyled: true, description: (page.attributes.description !== undefined ? page.attributes.description : true)})
@@ -43,10 +43,7 @@ precontentIsTransparent: true
   #top_about.mt-3
     .container
       .raise-1.bg-p80.text-shadow-none.text-white.py-5.px-3
-        h2.text-center
-          +hssLogo('fa_fw')
-          | 当研究会について
-          +hssLogo('fa_fw')
+        h2.text-center About us
         .text-center.my-4.h3 「高崎から姫川へ 姫川を全国へ」
         p
           | 当会は「高崎から姫川へ 姫川を全国へ」をテーマに活動する団体です。

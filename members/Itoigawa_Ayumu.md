@@ -1,6 +1,7 @@
 ---
 title: 糸魚川 歩
 layout: member
+description: 
 person:
   name:
     full:
@@ -11,7 +12,7 @@ person:
     nickname: null
   acounts: null
 membershipNumber: 1
-post: 会長
+posts: ['会長']
 image: false
 ---
 当会の代表をしています(^^)

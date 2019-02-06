@@ -1,0 +1,25 @@
+---
+title: メンバー
+layout: plain
+---
+-
+  let queries = [], qpages = []
+  const indexPrefix = 'member'
+  let rootpath = `/members/`
+  qpages = pages.filter(e => e.meta.permalink.indexOf(rootpath) == 0
+                          && e.attributes.layout == indexPrefix
+                          && e.attributes.draft != true
+                          && e.attributes.published == true
+                        )
+  qpages = qpages.sort((a, b) => a.attributes.membershipNumber - b.attributes.membershipNumber)
+#membersIndex
+  h1.text-center.mt-5 メンバー
+  #membersList
+    each mpage in qpages
+      .hss-memberIndex-member
+        a(href=mpage.meta.permalink).hss-memberIndex-member-inner.raise-1.p-2
+          img(src=(mpage.attributes.image || '/files/noimage.png'))
+          .hss-memberIndex-member-number.h5.mt-2 No. #{mpage.attributes.membershipNumber}
+          .hss-memberIndex-member-name.h2 #{mpage.attributes.title}
+          .hss-memberIndex-member-posts.h5 #{(mpage.attributes.posts || []).join(', ')}
+          .hss-memberIndex-member-description #{mpage.attributes.description || ''}

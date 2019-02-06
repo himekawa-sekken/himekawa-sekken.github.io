@@ -1,6 +1,7 @@
 ---
 title: 青海 翠
 layout: member
+description: 
 person:
   name:
     full:
@@ -11,7 +12,7 @@ person:
     nickname: null
   acounts: null
 membershipNumber: 2
-post: 研究員
+posts: ['研究員']
 image: false
 ---
 姫川愛は多分他の誰にも負けてない...はず...

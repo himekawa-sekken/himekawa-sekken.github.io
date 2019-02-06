@@ -1,6 +1,7 @@
 ---
 title: 平岩 穣
 layout: member
+description: 
 person:
   name:
     full:
@@ -11,7 +12,7 @@ person:
     nickname: null
   acounts: null
 membershipNumber: 4
-post: 研究員
+posts: ['研究員']
 image: null
 ---
 温泉を中心に糸魚川周辺をあれこれする人です。そろそろ禁断症状出て来たんで姫川温泉行きたいです。
