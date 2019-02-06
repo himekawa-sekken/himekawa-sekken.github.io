@@ -23,7 +23,8 @@ module.exports = async (site, src, urlPrefix) => {
     pages = pages.filter( (el, i, arr) => !!el )
 
     pages.sort(function(a,b) {
-        if(( a.meta.mtime || a.meta.birthtime ) < ( b.meta.mtime || b.meta.birthtime )) { return 1 } else { return -1 }
+        if(( a.meta.mtime || a.meta.birthtime ) < ( b.meta.mtime || b.meta.birthtime )) { return 1 }
+        else { return -1 }
     })
   
     return pages
