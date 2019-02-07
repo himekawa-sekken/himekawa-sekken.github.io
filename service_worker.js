@@ -1,4 +1,4 @@
-/* workbox 2019-02-07T00:45:22.779Z */
+/* workbox 2019-02-07T01:54:15.301Z */
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.routing.registerRoute(
@@ -10,7 +10,7 @@ workbox.routing.registerRoute(
 workbox.precaching.precacheAndRoute([
     {
         url: '/offline/',
-        revision: '1549500322779',
+        revision: '1549504455301',
     }
 ]);
 workbox.skipWaiting();
