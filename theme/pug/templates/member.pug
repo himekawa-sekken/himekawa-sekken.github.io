@@ -20,13 +20,13 @@ append preset
 block main
   #main
     #member
-      .m-3.px-3.py-5.raise-1.bg-w80.text-shadow-none
+      .m-3.px-3.pt-5.pb-0.raise-1.bg-w80.text-shadow-none
         article#article_maincontent
           block article_header
             header.w-100
               if(page.attributes.membershipNumber)
               .h4 No. #{page.attributes.membershipNumber}
-              h1.mt-2
+              h1.mt-2.mb-0
                 if(page.attributes.person && page.attributes.person.name && page.attributes.person.name.full)
                   each namepart in page.attributes.person.name.full
                     if(namepart.yomi)
@@ -38,7 +38,19 @@ block main
                     else
                       | #{namepart.name}
                     |  
-
+            if(page.attributes.person && page.attributes.person.accounts)
+              section.py-2.font-size-12
+                ul.list-inline.mb-0
+                  each account in page.attributes.person.accounts
+                    li.list-inline-item
+                      a(href=account.url target="_blank" rel="noreferrer")
+                        if(account.service_icon)
+                          +fa_fw(account.service_icon, 'fab')
+                          if(account.service)
+                            span.sr-only=account.service
+                        else if(account.service)
+                          | #{account.service}: 
+                        | #{account.text || ''}
           block article_body
             .d-flex.flex-column.flex-xl-row.align-items-center.align-items-xl-start.pt-2.pb-4
               if(page.attributes.tachie)
