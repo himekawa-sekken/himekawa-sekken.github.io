@@ -90,19 +90,19 @@ export class Sidebar {
     private touchmove(e: TouchEvent) {
         this.diffX = e.changedTouches[0].pageX - this.startX
         if (this.diffX >= 120) {
-            if(this.startX < 100 && !this.opened) this.sidebarOpen()
+            if(this.startX < 20 && !this.opened) this.sidebarOpen()
         } else if (this.diffX > 0) {
-            if(this.startX < 100 && !this.opened) {
+            if (this.startX < 20 && !this.opened) {
                 document.getElementsByTagName('html').item(0).style.overflowY = 'hidden'
                 for (const target of this.targets) target.style.left = `calc(-70vw + ${this.diffX}px)`
             }
         } else if (this.diffX > -120) {
-            if(this.startX >= 100 && this.opened) {
+            if (this.opened) {
                 document.getElementsByTagName('html').item(0).style.overflowY = ''
                 for (const target of this.targets) target.style.left = `${this.diffX}px`
             }
         } else if (this.diffX <= -120) {
-            if(this.startX >= 100 && this.opened) this.sidebarClose()
+            if (this.opened) this.sidebarClose()
         }
     }
     private touchend() {
