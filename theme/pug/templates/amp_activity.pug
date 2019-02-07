@@ -1,9 +1,9 @@
 extends ./amp_default
 append preset
-  include ../includes/_blog_preset
+  include ../includes/_activity_preset
 
 append meta
-  include ../includes/_blog_schema
+  include ../includes/_activity_schema
 
 block main
   #main.padding
@@ -26,12 +26,18 @@ block main
 
         section.pt-2.pb-4!= main_html
 
-        footer.w-100  
-          if(page.attributes.next || page.attributes.prev)
-            .d-flex.flex-wrap.my-2.bg-light
-              if(pageNext) 
-                a(href=`${site.url.path}${pageNext.meta.permalink}`)#next.p-3.flex-fill
-                  .container 次: #{pageNext.attributes.title}
-              if(pagePrev)
-                a(href=`${site.url.path}${pagePrev.meta.permalink}`)#prev.p-3.flex-fill
-                  .container 前: #{pagePrev.attributes.title} 
+        footer.w-100
+          a(href="/activities/").btn.btn-link.btn-block
+            +fa_fw('angle-double-left')
+            | Activity一覧へ
+          .d-flex.flex-wrap.my-2.bg-light
+            if(pagePrev)
+              a(href=`${site.url.path}${pagePrev.meta.permalink}`)#prev.p-3.flex-fill
+                .container
+                  +fa_fw('chevron-circle-left')
+                  | 前: #{pagePrev.attributes.title}
+            if(pageNext) 
+              a(href=`${site.url.path}${pageNext.meta.permalink}`)#next.p-3.flex-fill
+                .container
+                  +fa_fw('chevron-circle-right')
+                  | 次: #{pageNext.attributes.title}

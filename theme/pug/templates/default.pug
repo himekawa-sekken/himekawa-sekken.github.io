@@ -22,13 +22,18 @@ block main
           footer.w-100
             if(page.attributes.next || page.attributes.prev)
               .d-flex.flex-wrap.my-2.bg-light
-                if(page.attributes.next)
-                  - const pageNext = pages.find(qpage => qpage.meta.permalink == `${page.attributes.next}`)
-                    if(pageNext)
-                      a(href=`${site.url.path}${page.attributes.next}`)#next.p-3.flex-fill
-                        .container 次: #{pageNext.attributes.title}
                 if(page.attributes.prev)
                   - const pagePrev = pages.find(qpage => qpage.meta.permalink == `${page.attributes.prev}`)
                     if(pagePrev)
                       a(href=`${site.url.path}${page.attributes.prev}`)#prev.p-3.flex-fill
-                        .container 前: #{pagePrev.attributes.title}
+                        .container
+                          +fa_fw('chevron-circle-left')
+                          | 前: #{pagePrev.attributes.title}
+
+                if(page.attributes.next)
+                  - const pageNext = pages.find(qpage => qpage.meta.permalink == `${page.attributes.next}`)
+                    if(pageNext)
+                      a(href=`${site.url.path}${page.attributes.next}`)#next.p-3.flex-fill
+                        .container
+                          +fa_fw('chevron-circle-right')
+                          | 次: #{pageNext.attributes.title}
