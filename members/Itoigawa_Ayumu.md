@@ -10,7 +10,7 @@ person:
       - name: 歩
         yomi: あゆむ
     nickname: null
-  acounts: null
+  accounts: null
 membershipNumber: 1
 posts: ['会長']
 image: false

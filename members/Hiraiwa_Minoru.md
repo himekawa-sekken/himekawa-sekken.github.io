@@ -10,7 +10,7 @@ person:
       - name: 穣
         yomi: みのる
     nickname: null
-  acounts: null
+  accounts: null
 membershipNumber: 4
 posts: ['研究員']
 image: null

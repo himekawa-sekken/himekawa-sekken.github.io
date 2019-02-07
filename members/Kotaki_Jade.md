@@ -10,7 +10,7 @@ person:
       - name: 次瑛人
         yomi: じぇいど
     nickname: null
-  acounts: null
+  accounts: null
 membershipNumber: 5
 posts: ['研究員']
 image: false

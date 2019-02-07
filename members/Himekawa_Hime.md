@@ -10,7 +10,7 @@ person:
       - name: 緋芽
         yomi: ひめ
     nickname: null
-  acounts:
+  accounts:
     - service: Twitter
       service_icon: twitter
       text: Himekawa_Hime

@@ -10,7 +10,7 @@ person:
       - name: 翠
         yomi: みどり
     nickname: null
-  acounts: null
+  accounts: null
 membershipNumber: 2
 posts: ['研究員']
 image: false
