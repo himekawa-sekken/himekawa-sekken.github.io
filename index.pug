@@ -13,18 +13,21 @@ precontentIsTransparent: true
                           && e.attributes.draft != true              // 
                           && e.attributes.published == true
                         )
+  const movies = qpages.filter(e => e.attributes.categories.some(e => e == 'movie'))
   const newses = qpages.filter(e => e.attributes.categories.some(e => e == 'news'))
-  const otherActivities = qpages.filter(e => e.attributes.categories.some(e => e !== 'news'))
+  const otherActivities = qpages.filter(e => e.attributes.categories.some(e => (e !== 'news' && e !== 'movie')))
 
 #topppage
   #top_activities.mt-3
     .container
       .raise-1.bg-w80.text-shadow-none.py-4.px-3
-        h2.text-center Activities
+        h2.text-center
+          a(href="/activities/") Activities
         .row.justify-content-center
           #news.p-2.col-12.col-lg-6
             .raise-1.bg-w80.p-3.h-100
-              h3 News
+              h3
+                a(href="/activities/categories/news/") News
               if(newses && newses.length > 0)
                 ul.simpleindex.list-unstyled
                   +lis_of_pages(newses, {icon: true, time: true, self: false, s: true, unstyled: true, description: (page.attributes.description !== undefined ? page.attributes.description : true)})
