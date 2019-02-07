@@ -47,7 +47,7 @@ rss:
 # 無効にしたかったらfalseにしてroot:,template:の行頭に#
 disqus: false
 # 無効にしたかったらfalse
-ga: false
+ga: UA-134082528-1
 # 無効にしたかったらfalse
 sidebar: true
 # サイドバーは無効にできる
