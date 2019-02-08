@@ -2,18 +2,18 @@
 // falib.jsも更新すること
 
 const {
-    faGithub,
-    faTwitter
-} = require('@fortawesome/free-brands-svg-icons')
+  faGithub,
+  faTwitter
+} = require("@fortawesome/free-brands-svg-icons")
 
 const {
-    faHome
-} = require('@fortawesome/free-solid-svg-icons')
+  faHome
+} = require("@fortawesome/free-solid-svg-icons")
 
 module.exports = {
-    icons: [
-        faGithub,
-        faTwitter,
-        faHome
-    ]
+  icons: [
+    faGithub,
+    faTwitter,
+    faHome
+  ]
 }

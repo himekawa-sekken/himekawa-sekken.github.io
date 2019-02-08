@@ -1,38 +1,38 @@
 
-import onReady from './onReady'
-import { fainit } from './fainit'
-import { scrolltoshow } from './scrolltoshow'
-import { gototop } from './gototop'
+import { fainit } from "./fainit"
+import { gototop } from "./gototop"
+import onReady from "./onReady"
+import { scrolltoshow } from "./scrolltoshow"
 
-import { Sidebar } from './sidebar'
-import { sw } from './sw';
-import { pjaxinit } from './pjax';
-import { detectOldBrowser } from './old-browsers';
-import { pjaxLoaded } from './pjax-ready-others';
+import { detectOldBrowser } from "./old-browsers"
+import { pjaxinit } from "./pjax"
+import { pjaxLoaded } from "./pjax-ready-others"
+import { Sidebar } from "./sidebar"
+import { sw } from "./sw"
 
-import { BgYouTube } from './bg-youtube';
-import { NavbarHiding } from './navbar';
-import { loading } from './loading';
+import { BgYouTube } from "./bg-youtube"
+import { Loading } from "./loading"
+import { NavbarHiding } from "./navbar"
 
-function contentLoaded(){
+function contentLoaded() {
     fainit()
     scrolltoshow()
     gototop()
 }
 
-new loading()
+new Loading()
 let apid: string
 if (window.hssLoading) apid = window.hssLoading.append()
 
 onReady(contentLoaded)
-document.addEventListener('pjax:content', contentLoaded)
+document.addEventListener("pjax:content", contentLoaded)
 
 sw()
-document.addEventListener('pjax:content', sw)
+document.addEventListener("pjax:content", sw)
 
 new Sidebar()
 
-new BgYouTube('Q2eOixIOIT8', 'ytwrapper')
+new BgYouTube("Q2eOixIOIT8", "ytwrapper")
 
 new NavbarHiding()
 
@@ -40,6 +40,6 @@ pjaxinit()
 
 detectOldBrowser()
 
-window.addEventListener('pjax:load', pjaxLoaded)
+window.addEventListener("pjax:load", pjaxLoaded)
 
 if (apid && window.hssLoading) window.hssLoading.complete(apid)
