@@ -17,8 +17,8 @@ person:
       url: https://twitter.com/Himekawa_Hime
 membershipNumber: 3
 posts: ['研究員']
-image: /files/images/imports/2019/02/himehime.jpg
-tachie: /files/images/imports/2019/02/himehime.jpg
+image: /files/images/imports/2019/02/hime_2.jpg
+tachie: /files/images/imports/2019/02/hime_2.jpg
 ---
 温泉を中心に糸魚川周辺をあれこれする人です。そろそろ禁断症状出て来たんで姫川温泉行きたいです。
 
