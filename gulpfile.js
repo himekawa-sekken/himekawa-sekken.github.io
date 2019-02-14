@@ -20,11 +20,14 @@ const webpack = require("webpack")
 const postcssSorting = require("postcss-sorting")
 const autoprefixer = require("autoprefixer")
 const cssMqpacker = require("css-mqpacker")
+const cssnano = require("cssnano")
 
 const sizeOf = require("image-size")
 const cheerio = require("cheerio")
 
 const url = require("url")
+
+const { dom } = require("@fortawesome/fontawesome-svg-core")
 
 const $ = require("gulp-load-plugins")()
 
@@ -187,10 +190,12 @@ gulp.task("css", (cb) => {
   pump([
     gulp.src("theme/styl/main.sass"),
     $.sass({ sourceMap: true, outputStyle: "compressed" }),
+    $.header(dom.css()),
     $.postcss([
       postcssSorting(),
       autoprefixer({ browsers: "defaults" }),
-      cssMqpacker()
+      cssMqpacker(),
+      cssnano()
     ]),
     $.rename("main.css"),
     gulp.dest(cssDestpath)
@@ -636,9 +641,9 @@ gulp.task("image", () => {
   return Promise.all(streams)
 })
 
-gulp.task("clean-docs", (cb) => { del(["docs/**/*", "!docs/.git"], { dot: true }).then(cb()) })
-gulp.task("clean-dist-docs", (cb) => { del("dist/docs/**/*", { dot: true }).then(cb()) })
-gulp.task("clean-dist-files", (cb) => { del("dist/files/**/*", { dot: true }).then(cb()) })
+gulp.task("clean-docs", () => del(["docs/**/*", "!docs/.git"], { dot: true }))
+gulp.task("clean-dist-docs", () => del("dist/docs/**/*", { dot: true }))
+gulp.task("clean-dist-files", () => del("dist/files/**/*", { dot: true }))
 
 gulp.task("make-sw", (cb) => {
   if (!site.sw) {
