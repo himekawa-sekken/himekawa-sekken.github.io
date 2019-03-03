@@ -6,6 +6,7 @@ author:
   memberId: Kotaki_Jade
 category: news
 layout: activity
+amp: true
 ---
 姫川雪質研究会Webサイトを開設しました。
 

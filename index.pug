@@ -8,7 +8,7 @@ precontentIsTransparent: true
   let queries = [], qpages = []
   const indexPrefix = 'activity'
   let rootpath = `/activities/`
-  qpages = pages.filter(e => e.meta.permalink.indexOf(rootpath) == 0
+  qpages = pages.filter(e => e.meta.permalink.startsWith(rootpath)
                           && e.attributes.layout == indexPrefix           // blogレイアウトが適用されている
                           && e.attributes.draft != true              // 
                           && e.attributes.published == true
@@ -17,10 +17,12 @@ precontentIsTransparent: true
   const newses = qpages.filter(e => e.attributes.categories.some(e => e == 'news'))
   const otherActivities = qpages.filter(e => e.attributes.categories.some(e => (e !== 'news' && e !== 'movie')))
 
+  const members = pages.filter(e => e.meta.permalink.startsWith("/members/") && e.attributes.layout == "member")
+
 #topppage
   #top_activities.mt-3
     .container
-      .raise-1.bg-w80.text-shadow-none.py-4.px-3
+      .raise-1.bg-w80.text-shadow-none.py-4.px-4
         h2.text-center
           a(href="/activities/") Activities
         .row.justify-content-center
@@ -41,14 +43,25 @@ precontentIsTransparent: true
                   +lis_of_pages(otherActivities, {icon: true, time: true, self: false, s: true, unstyled: true, description: (page.attributes.description !== undefined ? page.attributes.description : true)})
               else
                 p.mb-0 （なし）
-        a(href="activities/").btn.btn-link.btn-block.text-center#seeAll 記事をすべて見る
+        .text-center.pt-2
+          a(href="/activities/").btn.btn-primary.text-center#seeAll 記事をすべて見る
 
   #top_about.mt-3
     .container
-      .raise-1.bg-p80.text-shadow-none.text-white.py-5.px-3
-        h2.text-center About us
-        .text-center.my-4.h3 「高崎から姫川へ 姫川を全国へ」
-        p
-          | 当会は「高崎から姫川へ 姫川を全国へ」をテーマに活動する団体です。
-          | 大糸線沿線、姫川流域(長野県白馬村・小谷村・新潟県糸魚川市)や群馬県の風土などについて発信します。
-        p.mb-0 活動は旅行が主です。Twitterや旅行記などさまざまな形態にて発信する予定です。
+      .raise-1.bg-p80.text-shadow-none.text-white.py-5.px-4
+        section
+          h2.text-center About us
+          .text-center.my-4.h3 「高崎から姫川へ 姫川を全国へ」
+          p
+            | 当会は「高崎から姫川へ 姫川を全国へ」をテーマに活動する団体です。
+            | <b>大糸線沿線</b>、姫川流域(長野県白馬村・小谷村・新潟県糸魚川市)や<b>群馬県</b>の風土などについて発信します。
+          p.mb-0 活動は旅行が主です。Twitterや旅行記などさまざまな形態にて発信する予定です。
+
+        hr.bg-info.m-4
+
+        section
+          a(href="/members/").text-white
+            h2.text-center Members
+          p.text-center 現在、#{members.length}人で活動しています。
+          p.text-center.mb-0
+            a(href="/members/").btn.btn-info.btn-lg メンバー一覧
