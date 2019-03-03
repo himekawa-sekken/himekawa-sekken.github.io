@@ -15,10 +15,7 @@ export const sw = (): void => {
           registration.onupdatefound = () => {
             if (registration.installing) {
               registration.installing.onstatechange = () => {
-                if (
-                  registration.installing
-                  && registration.installing.state === "installed"
-                  && navigator.serviceWorker.controller) {
+                if (this.state === "installed") {
                   console.log("Service Worker: バージョンアップします...")
                   location.reload(true)
                 }
