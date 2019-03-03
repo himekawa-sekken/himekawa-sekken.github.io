@@ -1,3 +1,1 @@
-## [maqz](//tamaina.github.io/maqz/)
-
-https://tamaina.github.io/
+# 姫川雪質研究会 the Himekawa Snow Society
