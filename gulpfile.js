@@ -27,7 +27,13 @@ const cheerio = require("cheerio")
 
 const url = require("url")
 
-const { dom } = require("@fortawesome/fontawesome-svg-core")
+const { dom, library, icon } = require("@fortawesome/fontawesome-svg-core")
+
+library.add(
+  require("@fortawesome/free-solid-svg-icons").fas,
+  require("@fortawesome/free-regular-svg-icons").far,
+  require("@fortawesome/free-brands-svg-icons").fab
+)
 
 const $ = require("gulp-load-plugins")()
 
@@ -249,14 +255,16 @@ function searchSidebar(pathe) {
 }
 
 // eslint-disable-next-line no-shadow
-async function toamp(htm, base) {
+async function toamp(htm) {
   // eslint-disable-next-line no-shadow
   const $ = cheerio.load(htm, { decodeEntities: false })
   const promises = []
   $("img[src]").each((i, el) => {
     promises.push(new Promise(async (resolve) => {
       // eslint-disable-next-line no-shadow
-      let src = $(el).attr("src")
+      // console.log("IMAGE")
+      // eslint-disable-next-line no-shadow
+      const src = $(el).attr("src")
       const alt = $(el).attr("alt")
       const title = $(el).attr("title")
       const id = $(el).attr("id")
@@ -268,7 +276,6 @@ async function toamp(htm, base) {
         width = dims.width
         // eslint-disable-next-line prefer-destructuring
         height = dims.height
-        src = `${base.site.url.path}/${src}`
       } else if ((width === undefined || height === undefined) && (src.startsWith("http") || src.startsWith("//"))) {
         const Url = url.parse(src)
         const filename = `${Url.pathname.slice(1).replace(/\//g, "-")}`.slice(-36)
@@ -289,13 +296,19 @@ async function toamp(htm, base) {
         glog(`${messages.amp.invalid_imageUrl}:\n${src}`)
         return resolve()
       }
-      $("img[src]").eq(i).after(`<amp-img src="${src}" alt="${alt}" title="${title}" id="${id}" width="${width}" height="${height}" layout="responsive"></amp-image>`)
+      $(el).replaceWith(`<amp-img src="${src}" alt="${alt}" title="${title}" id="${id}" width="${width}" height="${height}" layout="responsive"></amp-image>`)
       return resolve()
     }))
   })
   if (promises.length > 0) await Promise.all(promises)
-  $("img").remove()
-  return $("body").html()
+  $("i").each((i, el) => {
+    $(el).replaceWith(icon(
+      { iconName: $(el).attr("data-fa-icon-name"), prefix: $(el).attr("data-fa-prefix") },
+      JSON.parse($(el).attr("data-fa-option").replace(/'/g, "\""))
+    ).html[0])
+  })
+
+  return $.html()
 }
 
 gulp.task("pug", async () => {
@@ -390,8 +403,8 @@ gulp.task("pug", async () => {
             ampHtml => new Promise((res, rej) => {
               const newoptions = extend(
                 true,
-                { isAmp: true, mainHtml: ampHtml },
-                puglocals
+                puglocals,
+                { isAmp: true, mainHtml: ampHtml }
               )
               gulp.src(amptemplate)
                 .pipe($.pug({ locals: newoptions }))
@@ -545,18 +558,18 @@ gulp.task("image", () => {
   let gif; let svg; let others
   const dirname = `${date.getFullYear()}/${(`0${date.getMonth() + 1}`).slice(-2)}`
   if (parsed.ext === "") {
-    glog(`image will be saved like as "files/imports/${dirname}/filename.ext"`)
+    glog(`image will be saved like as "files/images/imports/${dirname}/filename.ext"`)
     gif = gulp.src(`${argv.i}/**/*.gif`)
     svg = gulp.src(`${argv.i}/**/*.svg`)
     others = gulp.src(`${argv.i}/**/*.{png,jpg,jpeg}`)
   } else if (parsed.ext === ".svg") {
-    glog(`image will be saved like as "files/imports/${dirname}/${parsed.name}${parsed.ext}"`)
+    glog(`image will be saved like as "files/images/imports/${dirname}/${parsed.name}${parsed.ext}"`)
     svg = gulp.src(argv.i)
   } else if (parsed.ext === ".gif") {
-    glog(`image will be saved like as "files/imports/${dirname}/${parsed.name}${parsed.ext}"`)
+    glog(`image will be saved like as "files/images/imports/${dirname}/${parsed.name}${parsed.ext}"`)
     gif = gulp.src(argv.i)
   } else {
-    glog(`image will be saved like as "files/imports/${dirname}/${parsed.name}${parsed.ext}"`)
+    glog(`image will be saved like as "files/images/imports/${dirname}/${parsed.name}${parsed.ext}"`)
     others = gulp.src(argv.i).pipe(gmAutoOrient)
   }
   if (gif) {
@@ -655,6 +668,11 @@ gulp.task("make-sw", (cb) => {
   res = `/* workbox ${base.update.toJSON()} */
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
+self.addEventListener("install", function(event) {
+  workbox.skipWaiting();
+  workbox.clientsClaim();
+})
+
 workbox.routing.registerRoute(
     /.*\.(?:${site.sw})/,
     workbox.strategies.staleWhileRevalidate({
@@ -682,10 +700,6 @@ self.addEventListener("fetch", function(event) {
         })
     );
 });
-self.addEventListener("install", function(event) {
-    workbox.skipWaiting();
-    workbox.clientsClaim();
-})
 `
   } /*
         if(site.ga){

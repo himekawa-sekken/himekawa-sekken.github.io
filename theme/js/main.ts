@@ -8,7 +8,6 @@ import { detectOldBrowser } from "./old-browsers"
 import { pjaxinit } from "./pjax"
 import { pjaxLoaded } from "./pjax-ready-others"
 import { Sidebar } from "./sidebar"
-import { sw } from "./sw"
 
 import { BgYouTube } from "./bg-youtube"
 import { Loading } from "./loading"
@@ -26,9 +25,6 @@ if (window.hssLoading) apid = window.hssLoading.append()
 
 onReady(contentLoaded)
 document.addEventListener("pjax:content", contentLoaded)
-
-sw()
-document.addEventListener("pjax:content", sw)
 
 new Sidebar()
 
