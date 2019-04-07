@@ -6,7 +6,7 @@ import { scrolltoshow } from "./scrolltoshow"
 
 import { detectOldBrowser } from "./old-browsers"
 import { pjaxinit } from "./pjax"
-import { pjaxLoaded } from "./pjax-ready-others"
+import { pjaxLoaded } from "./pjax-loaded"
 import { Sidebar } from "./sidebar"
 
 import { BgYouTube } from "./bg-youtube"
